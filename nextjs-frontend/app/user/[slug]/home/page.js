@@ -76,8 +76,6 @@ export default function Home({ params }) {
             const signature =
                 `${updated.category}|${updated.difficulty}|${updated.amount}|${updated.type}`;
     
-            console.log("FINAL PARAMS:", updated);
-    
             const res = await TriviaService.getTrivia(updated);
     
             if (!res.data.success) {
