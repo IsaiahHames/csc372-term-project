@@ -45,7 +45,7 @@ async function removeUser(req, res) {
 }
 
 async function createUser(req, res) {
-    const { username, password } = req.body; 
+    const { username, password } = req.body;
     if (username && password) {
         try {
             const newUser = await model.addUser(username, password);
@@ -59,29 +59,9 @@ async function createUser(req, res) {
     }
 }
 
-async function loginUser(req, res) {
-    const { username, password } = req.body; 
-    if (username && password) {
-        try {
-            const user = await model.getUserByUsername(username);
-            if (user && user.password === password) {
-                res.json(user);
-            } else {
-                res.status(401).send("Invalid username or password.");
-            }
-        } catch (err) {
-            console.error(err);
-            res.status(500).send("Server error");
-        }
-    } else {
-        res.status(400).send("Missing required user fields!");
-    }
-}
-
 module.exports = {
     fetchAllUsers,
     fetchUserById,
     removeUser,
-    createUser,
-    loginUser
+    createUser
 };

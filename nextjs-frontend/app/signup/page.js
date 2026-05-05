@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Signup() {
     const router = useRouter();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const username = e.target.Username.value;
@@ -18,16 +18,18 @@ export default function Signup() {
             return;
         }
 
-        const user = { username, password };
-        UsersService.createUser(user).then(() => {
-            alert("User created successfully! Please login.");
-            router.push("/login");
-        });
+        try {
+            await UsersService.registerUser({ username, password });
+            alert('User registered successfully!');
+            router.push('/login');
+        } catch (err) {
+            alert('Registration failed!');
+        }
     }
 
     return (
         <section>
-            <h1 className="text-center mt-3">TriviaChallenger</h1>
+            <h1 className="text-center mt-3">Triviq</h1>
 
             <div className="container py-2 h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">

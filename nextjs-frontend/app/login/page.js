@@ -6,19 +6,19 @@ import Link from "next/link";
 export default function Login() {
     const router = useRouter();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const username = e.target.Username.value;
         const password = e.target.Password.value;
 
-        const user = { username, password };
-        UsersService.loginUser(user).then((res) => {
-            const loggedInUser = res.data;
-            router.push(`/user/${loggedInUser.id}/home`);
-        }).catch(() => {
-            alert("Login failed! Please check your credentials.");
-        });
+        try {
+            const res = await UsersService.loginUser({ username, password });
+            const user = res.data.user;
+            router.push(`/user/${user.id}/home`);
+        } catch (err) {
+            alert('Login failed!');
+        }
     }
 
 
@@ -26,7 +26,7 @@ export default function Login() {
 
     return (
         <section>
-            <h1 className="text-center mt-3">TriviaChallenger</h1>
+            <h1 className="text-center mt-3">Triviq</h1>
 
             <div className="container py-2 h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
