@@ -4,23 +4,23 @@ const API = process.env.NEXT_PUBLIC_API_URL;
 
 class TriviaService {
   getTrivia(params) {
-    return axios.get(`${API}/trivia`, { params });
+    return axios.get(`${API}/api/trivia`, { params });
   }
 
   addQuestions({ id, questions }) {
-    return axios.post(`${API}/trivia/saveQuestions`, { id, questions }, {
+    return axios.post(`${API}/api/trivia/saveQuestions`, { id, questions }, {
       withCredentials: true
     });
   }
 
   getSavedQuestions(id) {
-    return axios.get(`${API}/trivia/${id}`, {
+    return axios.get(`${API}/api/trivia/${id}`, {
       withCredentials: true
     });
   }
 
   saveScore({ user_id, trivia_id, category, score, total }) {
-    return axios.post(`${API}/trivia/saveScore`, {
+    return axios.post(`${API}/api/trivia/saveScore`, {
       user_id,
       trivia_id,
       category,
@@ -32,7 +32,7 @@ class TriviaService {
   }
 
   getLeaderboard(category) {
-    return axios.get(`${API}/trivia/leaderboard`, {
+    return axios.get(`${API}/api/trivia/leaderboard`, {
       params: { category }
     });
   }
