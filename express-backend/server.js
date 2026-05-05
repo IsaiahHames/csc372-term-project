@@ -5,27 +5,28 @@ const multer = require("multer");
 const session = require("express-session");
 const passport = require("passport");
 
+
 require("./auth/passport.js");
 
 const app = express();
 
-app.set("trust proxy", 1);
-
-const corsOptions = {
-    origin: process.env.FRONTEND_URL,
+app.use(cors({
+    origin: "http://localhost:3001",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type"],
     credentials: true
-};
-
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
-
+}));
 
 app.use(multer().none());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
+
+app.use(session({
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 

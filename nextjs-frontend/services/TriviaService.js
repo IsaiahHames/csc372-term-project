@@ -1,41 +1,27 @@
-import axios from "axios";
+import axios from 'axios';
 
-const API = process.env.NEXT_PUBLIC_API_URL;
+const USERS_API_BASE_URL = process.env.NEXT_PUBLIC_TRIVIA_API_URL;
 
 class TriviaService {
-  getTrivia(params) {
-    return axios.get(`${API}/api/trivia`, { params });
-  }
+    getTrivia(params) {
+        return axios.get(USERS_API_BASE_URL, { params });
+    }
 
-  addQuestions({ id, questions }) {
-    return axios.post(`${API}/api/trivia/saveQuestions`, { id, questions }, {
-      withCredentials: true
-    });
-  }
+    addQuestions({ id, questions }) {
+        return axios.post(USERS_API_BASE_URL + "/saveQuestions", { id, questions });
+    }
 
-  getSavedQuestions(id) {
-    return axios.get(`${API}/api/trivia/${id}`, {
-      withCredentials: true
-    });
-  }
+    getSavedQuestions(id) {
+        return axios.get(USERS_API_BASE_URL + `/${id}`);
+    }
 
-  saveScore({ user_id, trivia_id, category, score, total }) {
-    return axios.post(`${API}/api/trivia/saveScore`, {
-      user_id,
-      trivia_id,
-      category,
-      score,
-      total
-    }, {
-      withCredentials: true
-    });
-  }
+    saveScore({ user_id, trivia_id, category, score, total }) {
+        return axios.post(USERS_API_BASE_URL + "/saveScore", { user_id, trivia_id, category, score, total });
+    }
 
-  getLeaderboard(category) {
-    return axios.get(`${API}/api/trivia/leaderboard`, {
-      params: { category }
-    });
-  }
+    getLeaderboard(category) {
+        return axios.get(USERS_API_BASE_URL + "/leaderboard", { params: { category } });
+    }
 }
 
 export default new TriviaService();
