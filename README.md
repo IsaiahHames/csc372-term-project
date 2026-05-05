@@ -1,6 +1,15 @@
 # csc372-term-project
 MVP Demo: https://uncg-my.sharepoint.com/:v:/g/personal/ishames_uncg_edu/IQAV3G1oZd8SSrNs38AGu8yHAR7wr90-tf9OZTbMSHkuzY8?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=cXEEee
 
+# Setup:
+1. open console for express-backend
+run npm install
+then run npm start
+
+2. open console for nextjs-frontend
+run npm install
+then run npm run dev
+
 # Design Choices: 
 My choices of frontend and backend came from express being the main backend learned. While nextjs was intresting to me so i chose it for my frontend
 
