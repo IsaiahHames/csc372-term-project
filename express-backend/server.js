@@ -9,12 +9,17 @@ require("./auth/passport.js");
 
 const app = express();
 
-app.use(cors({
+app.set("trust proxy", 1);
+
+const corsOptions = {
     origin: process.env.FRONTEND_URL,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
-}));
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 
 app.use(multer().none());
