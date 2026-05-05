@@ -20,12 +20,6 @@ app.use(multer().none());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
-
-app.use(session({
-    secret: 'your_secret_key',
-    resave: false,
-    saveUninitialized: true
-}));
 app.use(passport.initialize());
 app.use(passport.session());
 
