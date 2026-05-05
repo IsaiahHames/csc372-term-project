@@ -16,6 +16,9 @@ app.use(cors({
     credentials: true
 }));
 
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
 app.use(multer().none());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
