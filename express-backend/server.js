@@ -10,7 +10,7 @@ require("./auth/passport.js");
 const app = express();
 
 app.use(cors({
-    origin: "http://localhost:3001",
+    origin: process.env.FRONTEND_URL || "http://localhost:3001",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
     credentials: true
